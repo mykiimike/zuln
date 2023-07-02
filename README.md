@@ -1,7 +1,10 @@
-# Zuln
-Yet another AI vuln hunter
+# Zuln - AI Vulnerability Hunter
+
+Zuln is an AI-powered vulnerability hunter designed to assist in identifying security vulnerabilities in code. It leverages AI completion and Language Model Learning (LLM) techniques to analyze code and extract patterns indicative of vulnerabilities. This README provides installation instructions and demonstrates how to use Zuln for sniffing out specific types of vulnerabilities.
 
 ## Installation
+
+To install Zuln, execute the following command:
 
 ```bash
 npm install -g zuln
@@ -9,9 +12,15 @@ npm install -g zuln
 
 ## Sniffing
 
-Sniffing the code allow to extract main patterns of a vulnerable code using AI completion / LLM.
+Zuln's sniffing feature allows you to extract main patterns of vulnerable code using AI completion and LLM. It currently supports detecting vulnerabilities related to cryptographic issues and out-of-bounds errors. The following examples demonstrate how to use Zuln to identify these vulnerabilities.
 
-### Against crypto problem
+### Cryptographic Vulnerability
+
+To detect cryptographic vulnerabilities, use the provided `crypto-yafm.py` script. Below is an example of how to use Zuln for this purpose:
+
+```bash
+zuln snif ./crypto-yafm.py
+```
 
 ```python
 #!/usr/bin/python3 -u
@@ -74,13 +83,18 @@ while True:
     print("\n")
 ```
 
+
+![Crypto Vulnerability Result](data/crypto.png)
+
+The output image demonstrates the vulnerable parts of the code and highlights potential security concerns.
+
+### Out-of-Bounds Vulnerability
+
+Zuln can also help identify out-of-bounds vulnerabilities. Use the provided `damnvuln.c` file to detect such issues. Here's an example command:
+
 ```bash
-zuln snif ./crypto-yafm.py
+zuln snif ./damnvuln.c
 ```
-
-![Crypto result](data/crypto.png)
-
-### Against Out-Of-Bound 
 
 ```c
 //https://github.com/hardik05/Damn_Vulnerable_C_Program/blob/master/imgRead.c
@@ -168,10 +182,14 @@ int main(int argc,char **argv)
 }
 ```
 
-```bash
-zuln snif ./damnvuln.c
-```
+![Out-of-Bounds Vulnerability Explanation 1](data/out1.png)
 
-![OOB Explained 1](data/out1.png)
+![Out-of-Bounds Vulnerability Explanation 2](data/out2.png)
 
-![OOB Explained 2](data/out2.png)
+The images illustrate the identified vulnerabilities and provide explanations for each vulnerability discovered.
+
+Feel free to leverage Zuln for vulnerability hunting and secure your code effectively!
+
+## Contributing
+
+Contributions to Zuln are welcome! If you discover any issues or have suggestions for improvements, please submit an issue or a pull request.
